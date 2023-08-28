@@ -1,0 +1,282 @@
+<style type="text/css">
+    .root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column; */
+        height: auto;
+    }
+
+    .subdiv {
+        background-color: #ecf0f1;
+        height: auto;
+        width: 750px;
+        padding: 15px;
+        border-radius: 13px;
+        box-shadow: 5px 10px 18px #888888;
+        margin-bottom: 50px;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gap {
+        margin-top: 10px;
+    }
+
+    .btncolor{
+        background-color: darkcyan;
+        color: white;
+    }
+
+    .navbarcolor{
+        background-color: #ecf0f1;
+    }
+</style>
+<html>
+    <body style="background-color: white;">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/javascripts/project.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+
+<form action="/resume/insertrecord" method="POST" enctype="multipart/form-data">
+    <nav class="navbar sticky-top navbarcolor" style="background: rgba(90, 50, 0.2, 0.1); position: sticky; box-shadow: 0 8px 6px -6px #999;">
+        <div class="center" style="width: 20%;"><a class="navbar-brand" href="/resume/resumemaking">
+                <img src="/images/logo.png" width="38" alt="logo">
+            </a></div>
+        <div class="center"
+            style="width: 60%; font-size: 30px; font-weight: bold; letter-spacing: 2px; color: darkcyan;">Resume Generator
+        </div>
+        <div class="center" style="width: 20%;">
+            </div>
+    </nav>
+    <div class="root" style="margin-top: 45px;">
+        <!-- <div style="font-size: 30px; font-weight: bold; letter-spacing: 2px; margin: 25px 0px 10px 0px; color: darkcyan;">
+            <img src="/images/logo.png" width="45">
+            Resume Maker
+        </div> -->
+        <div class="subdiv">
+            <div class="row gap center"
+                style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Personal Details
+            </div>
+            <div class="row center">
+                <div class="col">
+                    <input type="text" class="form-control" name="firstname" placeholder="Enter your first name"
+                        required pattern="[a-z A-Z]+">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="lastname" placeholder="Enter your last name" required
+                        pattern="[a-z A-Z]+">
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <input type="text" class="form-control" name="fathername" placeholder="Enter your father name"
+                        required pattern="[a-z A-Z]+">
+                </div>
+                <div class="col">
+                    <input type="date" class="form-control" name="dob" required>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col" style="display: flex; align-items: center; margin-left: 13%;">
+                    <input type="radio" value="Male" name="gender" required>
+                    <i class="fas fa-male"
+                        style="margin-left: 10px; margin-right: 30px; font-size: 30px; color: darkcyan;"></i>
+                    <input type="radio" value="Female" name="gender" required>
+                    <i class="fas fa-female" style="margin-left: 10px; font-size: 30px; color: deeppink;"></i>
+                </div>
+            </div>
+            <div class="row" style="padding: 10px; font-weight: 500; font-size: 15px;">
+                Upload Photo
+            </div>
+            <div class="col">
+                <!-- <input type="file" name="userpicture" required style="color: darkcyan;"> -->
+                <div id="file-js-example" class="file has-name">
+                    <label class="file-label">
+                      <input class="file-input" type="file" name="userpicture" required>
+                      <span class="file-cta">
+                        <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                          Choose a file…
+                        </span>
+                      </span>
+                      <span class="file-name">
+                        No file uploaded
+                      </span>
+                    </label>
+                  </div>
+                  
+                  <script>
+                    const fileInput = document.querySelector('#file-js-example input[type=file]');
+                    fileInput.onchange = () => {
+                      if (fileInput.files.length > 0) {
+                        const fileName = document.querySelector('#file-js-example .file-name');
+                        fileName.textContent = fileInput.files[0].name;
+                      }
+                    }
+                  </script>
+            </div>
+            <div class="row gap center"
+                style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Contact Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <select id="states" name="state" class="form-control">
+                    </select>
+                </div>
+                <div class="col">
+                    <select id="cities" name="city" class="form-control">
+                    </select>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <input type="email" name="email" class="form-control" placeholder="E-Mail Address" required>
+                </div>
+                <div class="col">
+                    <input type="text" name="mobileno" class="form-control" placeholder="Mobile Number" required
+                        pattern="[0-9]{10}" title="Must be enter 10 digits only">
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <textarea class="form-control" name="useraddress" placeholder="Enter your full address"
+                        required></textarea>
+                </div>
+            </div>
+            <div class="row gap center"
+                style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Qualification Details
+            </div>
+            <div class="row" style="padding: 0px 0px 10px 10px; font-weight: 500; font-size: 15px;">
+                High School Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" name="highschoolpercentage" class="form-control" placeholder="Enter percentage"
+                        required>
+                </div>
+                <div class="col">
+                    <select name="highschoolboard" class="form-control" id="highschoolboards">
+                    </select>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <input required type="text" name="highschoolpassingyear" class="form-control"
+                        placeholder="Enter passing year" style="width: 48%;">
+                </div>
+            </div>
+            <div class="row" style="padding: 10px; font-weight: 500; font-size: 15px;">
+                Higher secondary School Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input required type="text" name="highersecondarypercentage" class="form-control"
+                        placeholder="Enter percentage">
+                </div>
+                <div class="col">
+                    <select name="highersecondaryboard" class="form-control" id="highersecondaryboards">
+                    </select>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <input required type="text" name="highersecondarypassingyear" class="form-control"
+                        placeholder="Enter passing year" style="width: 48%;">
+                </div>
+            </div>
+            <div class="row" style="padding: 10px; font-weight: 500; font-size: 15px;">
+                Graduation Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input required type="text" name="graduationpercentage" class="form-control"
+                        placeholder="Enter percentage">
+                </div>
+                <div class="col">
+                    <input required type="text" name="graduationpassingyear" class="form-control"
+                        placeholder="Enter passing year">
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <select name="university" class="form-control" id="universities">
+                    </select>
+                </div>
+                <div class="col">
+                    <select name="college" class="form-control" id="colleges">
+                    </select>
+                </div>
+            </div>
+            <div class="row gap center"
+                style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Extra Curriculam Activities
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea class="form-control" name="skills" placeholder="Enter your skills"></textarea>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <textarea class="form-control" name="otheractivities"
+                        placeholder="Enter your other activities"></textarea>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 25px;">
+                <div class="col center">
+                    <input type="submit" class="btn btncolor" style="margin-right: 15px; border-radius: 5px;">
+                    <input type="reset" class="btn btncolor" style="border-radius: 5px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col center" style="margin-top: 20px;">
+                    <% if(result==1) { %>
+                        <script>
+                            swal({
+                                title: "Good job!",
+                                text: "Your form has submitted!",
+                                icon: "success",
+                                button: "OK",
+                            });
+                        </script>
+                        <% } else if(result==0) { %>
+                            <script>
+                                swal({
+                                    title: "Oops...!",
+                                    text: "Something went wrong!",
+                                    icon: "error",
+                                    button: "OK",
+                                });
+                            </script>
+                            <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

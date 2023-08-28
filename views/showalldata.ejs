@@ -1,0 +1,82 @@
+<style type="text/css">
+    .root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column; */
+    }
+
+    .subdiv {
+        background-color: #ecf0f1;
+        height: auto;
+        width: 1250px;
+        padding: 15px;
+        border-radius: 13px;
+        box-shadow: 5px 10px 18px #888888;
+        margin-bottom: 50px;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbarcolor{
+        background-color: #ecf0f1;
+        background: rgba(90, 50, 0.2, 0.1)
+    }
+    </style>
+<html>
+  <body style="background-color: white;">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <nav class="navbar sticky-top navbarcolor" style="display: flex; box-shadow: 0 8px 6px -6px #999;">
+      <div class="center" style="width: 20%;">
+              <img src="/images/logo.png" width="38" alt="logo">
+          </div>
+      <div class="center"
+          style="width: 60%; font-size: 30px; font-weight: bold; letter-spacing: 2px; color: darkcyan;">Resume User Data
+      </div>
+      <div class="center" style="width: 20%;"><a class="navbar-brand" href="/resume/resumemaking">
+        <i class="fas fa-plus-circle"></i>
+          </a></div>
+  </nav>
+    <div class="root" style="margin-top: 45px;">
+        <div class="subdiv">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No.<br><br><br>&nbsp;</th>
+            <th scope="col">Personal<br>Details<br><br>&nbsp;</th>
+            <th scope="col">Contact<br>Details<br><br>&nbsp;</th>
+            <th scope="col">High School<br>Details<br>&nbsp;</th>
+            <th scope="col">Higher Secondary School<br>Details</th>
+            <th scope="col">Graduation<br>Details<br><br>&nbsp;</th>
+            <th scope="col">Extra Curriculam Activities<br>Details<br>&nbsp;</th>
+            <th scope="col">Picture<br><br><br>&nbsp;</th>
+            <th scope="col">Update<br><br><br>&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% result.map((item,index)=>{ %>
+          <tr>
+            <th scope="row"><%= (index+1) %></th>
+           <td><div style="font-size: 13px;"><b>ID :</b> <%= item.userid %><br><b>Name :</b> <%= item.username %><br><b>Father Name :</b> <%= item.fathername %><br><b>Gender :</b> <%= item.gender %></div></td>
+           <td><div style="font-size: 13px;"><b>City :</b> <%= item.cityname %><br><b>State :</b> <%= item.statename %><br><b>Address :</b> <%= item.fulladdress %><br><b>Mobile No. :</b> <%= item.mobilenumber %><br><b>Email :</b> <%= item.email %></div></td> 
+           <td><div style="font-size: 13px;"><b>Percentage :</b> <%= item.highschoolpercentage %><br><b>Board :</b> <%= item.highschoolboard %><br><b>Passing Year :</b> <%= item.highschoolpassingyear %></div></td> 
+           <td><div style="font-size: 13px;"><b>Percentage :</b> <%= item.highersecondarypercentage %><br><b>Board :</b> <%= item.highersecondaryboard %><br><b>Passing Year :</b> <%= item.highersecondarypassingyear %></div></td>
+           <td><div style="font-size: 13px;"><b>Percentage :</b> <%= item.graduationpercentage %><br><b>Passing Year :</b> <%= item.graduationpassingyear %><br><b>University :</b> <%= item.universityname %><br><b>College :</b> <%= item.collegename %></div></td>
+           <td><div style="font-size: 13px;"><b>Skills :</b> <%= item.skills %><br><b>Other Activities :</b> <%= item.otheractivities %></div></td>
+           <td><a href='/resume/updatepicture?picture=<%=item.picture %>&uid=<%=item.userid %>'><img src='/images/<%=item.picture %>' style="width: 50px; border-radius: 10px;"></a></td>
+           <td><a href="/resume/updatebyid?uid=<%=item.userid %>"><div style="font-size: 17px; display: flex; justify-content: center;"><i class="fas fa-edit"></i></div></a></td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+      </div>
+      </div>
+      </body>
+</html>

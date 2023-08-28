@@ -1,0 +1,181 @@
+<style type="text/css">
+    .root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column; */
+    }
+
+    .subdiv {
+        border: 4px solid lightblue;
+        height: auto;
+        width: 850px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 5px 10px 18px #888888;
+        margin-bottom: 50px;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    </style>
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <input type="hidden" value="<%= result.userid %>" name="uid">
+    <div class="root" style="padding: 25px;">
+        <div class="subdiv">
+        <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 40px;">
+    <div style="padding-right: 10px;"><img src='/images/<%=result.picture %>' style="width: 100px; height: 100px; border-radius: 50%;"></div>
+    <div><h1 style="font-size: 25px;"><%=result.username %></h1></div>
+    </div>
+    <div class="card text-center" style="margin: 25px; background-color: lightblue;">
+        <div class="card-header">
+          Personal Details
+        </div>
+        </div>
+        <div style="margin-left: 50px;">
+            <table>
+                <tr>
+                    <td><b>Name : </b></td>
+                    <td><%=result.username%></td>
+                    </tr>
+                <tr>
+                    <td><b>Gender : </b></td>
+                    <td><%=result.gender%></td>
+                    </tr>
+                <tr>
+                    <td><b>Father name : </b></td>
+                    <td><%=result.fathername%></td>
+                    </tr>
+                <tr>
+                    <td><b>DOB : </b></td>
+                    <td><%=result.dateofbirth%></td>
+                    </tr>
+            </table>
+        </div>
+        <div class="card text-center" style="margin: 25px; background-color: lightblue;">
+            <div class="card-header">
+              Contact Details
+            </div>
+            </div>
+            <div style="margin-left: 50px;">
+                <table>
+                    <tr>
+                        <td><b>State : </b></td>
+                        <td><%=result.statename%></td>
+                        </tr>
+                    <tr>
+                        <td><b>City : </b></td>
+                        <td><%=result.cityname%></td>
+                        </tr>
+                    <tr>
+                        <td><b>Address : </b></td>
+                        <td><%=result.fulladdress%></td>
+                        </tr>
+                        <tr>
+                            <td><b>Mobile no. : </b></td>
+                            <td><%=result.mobilenumber%></td>
+                            </tr>
+                            <tr>
+                                <td><b>Email : </b></td>
+                                <td><%=result.email%></td>
+                                </tr>
+                </table>
+            </div>
+            <div class="card text-center" style="margin: 25px; background-color: lightblue;">
+                <div class="card-header">
+                  Qualifictaion Details
+                </div>
+                </div>
+                <div style="margin-left: 50px; display: flex;">
+                    <div style="display: flex; flex-direction: column; margin-right: 20%;">
+                    <table>
+                        <tr>
+                            <div style="margin-bottom: 5px;"><b style="font-size: 15px;">• <u>High school details</u></b></div>
+                            <td><b>Percentage : </b></td>
+                            <td><%=result.highschoolpercentage%></td>
+                            </tr>
+                        <tr>
+                            <td><b>Board : </b></td>
+                            <td><%=result.highschoolboard%></td>
+                            </tr>
+                        <tr>
+                            <td><b>Passing year : </b></td>
+                            <td><%=result.highschoolpassingyear%></td>
+                            </tr>
+                    </table>
+                </div>
+                <div style="display: flex; flex-direction: column;">
+
+                    <table>
+                        <tr>
+                            <div style="margin-bottom: 5px;"><b style="font-size: 15px;">• <u>Higher secondary school details</u></b></div>
+                            <td><b>Percentage : </b></td>
+                            <td><%=result.highersecondarypercentage%></td>
+                            </tr>
+                        <tr>
+                            <td><b>Board : </b></td>
+                            <td><%=result.highersecondaryboard%></td>
+                            </tr>
+                        <tr>
+                            <td><b>Passing year : </b></td>
+                            <td><%=result.highersecondarypassingyear%></td>
+                            </tr>
+                    </table>
+                    </div>
+                    </div>
+                    <div style="margin: 20px 0px 0px 50px;">
+                        <table>
+                            <tr>
+                                <div style="margin-bottom: 5px;"><b style="font-size: 15px;">• <u>Graduation details</u></b></div>
+                                <td><b>College : </b></td>
+                                <td><%=result.collegename%></td>
+                                </tr>
+                            <tr>
+                                <td><b>University : </b></td>
+                                <td><%=result.universityname%></td>
+                                </tr>
+                            <tr>
+                                <td><b>Percentage : </b></td>
+                                <td><%=result.graduationpercentage%></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Passing year : </b></td>
+                                    <td><%=result.graduationpassingyear%></td>
+                                    </tr>
+                        </table>
+                        </div>
+                        <div class="card text-center" style="margin: 25px; background-color: lightblue;">
+                            <div class="card-header">
+                            Extra curriculam activities
+                            </div>
+                            </div>
+                            <div style="margin-left: 50px;">
+                                <table>
+                                    <tr>
+                                        <td><b>Skills : </b></td>
+                                        <td><%=result.skills%></td>
+                                        </tr>
+                                    <tr>
+                                        <td><b>Other activities : </b></td>
+                                        <td><%=result.otheractivities%></td>
+                                    </tr>
+                                </table>
+                            </div>
+                <div class="center" style="margin-top: 25px;"><input id="submit" onclick="download()" type="submit" value="Download resume/cv" class="btn" style="background-color: darkcyan; color: white;"></div>
+    </div>
+    </div>
+    <script>
+        function download(){
+            if(submit.type=="submit"){
+            submit.type="hidden"
+            window.print()
+            }
+        }
+    </script>
+</html>

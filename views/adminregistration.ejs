@@ -1,0 +1,140 @@
+<style type="text/css">
+
+    .root{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+   
+    .subdiv{
+       width: 35vmax;
+       height: auto;
+       padding: 20px 0px 20px 0px;
+       box-shadow: 5px 10px 18px #888888;
+       border-radius: 20px;
+    }
+   
+    .center{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
+   </style>
+   <html>
+       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+       <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+
+       <title>Registration-Resume Generator</title>
+       <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+
+       <nav class="navbar sticky-top navbarcolor" style="background: rgba(255,255,255,0); position: sticky; box-shadow: 0 8px 6px -6px #999;">
+        <div class="center" style="width: 20%;"><a class="navbar-brand" href="/resume/homepage">
+            <img src="/images/logo.png" width="38" alt="logo">
+        </a></div>
+        <div class="center"
+            style="width: 60%; font-size: 30px; font-weight: bold; letter-spacing: 2px; color: #0d6efd;">Resume
+            Generator
+        </div>
+        <div style="width: 20%;">
+        </div>
+    </nav>
+       <div class="root" style="font-family: 'Poppins', sans-serif";>
+           <div class="subdiv center">
+               <form action="/admin/registrationsuccessfull" method="POST" enctype="multipart/form-data">
+                <div style="display: flex; justify-content: end;">
+                    <a href="/admin/adminlogin">Login <i class="fas fa-sign-in-alt"></i></a>
+                </div>
+                   <div class="center" style="flex-direction: column;">
+                       <i class="fad fa-users" style="font-size: 35px; color: #f53b57; margin-bottom: 5px;"></i>
+                       <h4 style="font-style: normal; font-weight: 600;">Registration</h4>
+                   </div>
+                   <div class="form-group" style="margin-top: 10px;">
+                     <label>Name*</label>
+                     <input required pattern="[a-z A-Z]+" type="text" class="form-control" placeholder="Enter name" name="username">
+                   </div>
+                   <div class="form-group">
+                     <label>E-mail ID*</label>
+                     <input required type="email" class="form-control" placeholder="Enter email id" name="email">
+                    </div>
+                   <div class="form-group">
+                    <label>Upload Photo*</label><br>
+                    <!-- <input required type="file" name="picture"> -->
+                    <div id="file-js-example" class="file has-name">
+                      <label class="file-label">
+                        <input class="file-input" type="file" name="picture" required>
+                        <span class="file-cta">
+                          <span class="file-icon">
+                            <i class="fas fa-upload"></i>
+                          </span>
+                          <span class="file-label">
+                            Choose a file…
+                          </span>
+                        </span>
+                        <span class="file-name">
+                          No file uploaded
+                        </span>
+                      </label>
+                    </div>
+                    
+                    <script>
+                      const fileInput = document.querySelector('#file-js-example input[type=file]');
+                      fileInput.onchange = () => {
+                        if (fileInput.files.length > 0) {
+                          const fileName = document.querySelector('#file-js-example .file-name');
+                          fileName.textContent = fileInput.files[0].name;
+                        }
+                      }
+                    </script>
+                  </div>
+                  <div class="form-group">
+                    <label>Password*</label>
+                    <input id="pwd" required type="password" class="form-control" placeholder="Enter new password">
+                  </div>
+                  <div class="form-group">
+                    <label>Confirm Password*</label>
+                    <input id="cpwd" onkeyup="passwordchecker()" required type="password" class="form-control" placeholder="Enter confirm password" name="pwd">
+                  </div>
+                  <div style="display: flex; justify-content: flex-start;">
+                      <b id="showpasswordmatchornot"></b>
+                      </div>
+                      <script>
+                        function passwordchecker(){
+                        if(pwd.value==cpwd.value){
+                          showpasswordmatchornot.innerHTML="<font color='green' size='2px'>Password matched</font>"
+                        }else{
+                          showpasswordmatchornot.innerHTML="<font color='crimson' size='2px'>Password doesn't matched</font>"
+                        }
+                            }
+                      </script>
+                   <div style="display: flex; align-items: center; justify-content: center;">
+                    <b style="color: crimson; font-size: 15px; padding-bottom: 5px;"><%= message %></b>
+                </div>
+                 <div style="display: flex; justify-content: center;">
+                   <input id="sudmitbuttoncheck" type="submit" value="Register" class="btn btn-primary" style="margin-right: 10px;">
+                   <input type="reset" class="btn btn-primary">
+                </div>
+
+                <script>
+                  $(document).ready(function(){
+                    $("#cpwd").keyup(function(){
+                      if($("#pwd").val()==$("#cpwd").val()){
+                        $("#sudmitbuttoncheck").prop("disabled",false)
+                      }else{
+                        $("#sudmitbuttoncheck").prop("disabled",true)
+                      }
+                    })
+                  })
+                  </script>
+
+                </form>
+           </div>
+       </div>
+   </html>

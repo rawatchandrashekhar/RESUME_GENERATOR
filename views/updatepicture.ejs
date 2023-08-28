@@ -1,0 +1,15 @@
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <center>
+        <h1 style="margin: 10px 0px 20px 0px;">Picture updation</h1>
+        <form action="/resume/updatepictureresult" method="post" enctype="multipart/form-data">
+            <img src="/images/<%=picture %>" width="300" alt="picture">
+            <input type="hidden" name="uid" value="<%=uid %>" ><br><br>
+            <b>If you want to update your picture then upload new picture</b>
+            <input required type="file" name="newpicture"><br><br>
+            <input type="submit" value="Update" class="btn btn-primary">
+        </form>
+    </center>
+</html>

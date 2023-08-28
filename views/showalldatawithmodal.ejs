@@ -1,0 +1,143 @@
+<style type="text/css">
+    .root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column; */
+    }
+
+    .subdiv {
+        background-color: #ecf0f1;  
+        height: auto;
+        width: 1250px;
+        padding: 15px;
+        border-radius: 13px;
+        box-shadow: 5px 10px 18px #888888;
+        margin-bottom: 50px;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .navbarcolor{
+        background-color: #ecf0f1;
+        /* background: rgba(90, 50, 0.2, 0.1) */
+    }
+    </style>
+<html>
+  <body style="background-color: white;">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+    <nav class="navbar sticky-top navbarcolor" style="background: rgba(90, 50, 0.2, 0.1); position: sticky; display: flex; box-shadow: 0 8px 6px -6px #999;">
+      <div class="center" style="width: 20%;"><a class="navbar-brand" href="/resume/resumemaking">
+              <img src="/images/logo.png" width="38" alt="logo">
+          </a></div>
+      <div class="center"
+          style="width: 60%; font-size: 30px; font-weight: bold; letter-spacing: 2px; color: darkcyan;">Resume User Data
+      </div>
+      <div class="center" style="width: 20%;"><a class="navbar-brand" href="/resume/resumemaking">
+        <i class="fas fa-plus-circle" style="display: flex; justify-content: center; align-items: center;"></i>
+          </a></div>
+  </nav>
+    <div class="root" style="margin-top: 45px;">
+        <div class="subdiv">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">S.No.<br><br><br>&nbsp;</th>
+            <th scope="col">Personal Details<br><br>&nbsp;</th>
+            <th scope="col">Contact<br>Details<br><br>&nbsp;</th>
+            <th scope="col">High School<br>Details<br>&nbsp;</th>
+            <th scope="col">Higher Secondary School<br>Details</th>
+            <th scope="col">Graduation<br>Details<br><br>&nbsp;</th>
+            <th scope="col">Extra Curriculam Activities<br>Details</th>
+            <th scope="col">Update picture<br><br>&nbsp;</th>
+            <th scope="col">Update & delete data</th>
+            <th scope="col">Generate and download resume/cv</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% result.map((item,index)=>{ %>
+          <tr>
+            <th scope="row"><%= (index+1) %></th>
+           <td><div style="font-size: 13px;"><b>ID :</b> <%= item.userid %><br><b>Name :</b> <%= item.username %><br><b>Father Name :</b> <%= item.fathername %><br><b>Gender :</b> <%= item.gender %></div></td>
+           <td><div style="font-size: 13px;"><b>City :</b> <%= item.cityname %><br><b>State :</b> <%= item.statename %><br><b>Address :</b> <%= item.fulladdress %><br><b>Mobile No. :</b> <%= item.mobilenumber %><br><b>Email :</b> <%= item.email %></div></td> 
+           <td><div style="font-size: 13px;"><b>Percentage :</b> <%= item.highschoolpercentage %><br><b>Board :</b> <%= item.highschoolboard %><br><b>Passing Year :</b> <%= item.highschoolpassingyear %></div></td> 
+           <td><div style="font-size: 13px;"><b>Percentage :</b> <%= item.highersecondarypercentage %><br><b>Board :</b> <%= item.highersecondaryboard %><br><b>Passing Year :</b> <%= item.highersecondarypassingyear %></div></td>
+           <td><div style="font-size: 13px;"><b>Percentage :</b> <%= item.graduationpercentage %><br><b>Passing Year :</b> <%= item.graduationpassingyear %><br><b>University :</b> <%= item.universityname %><br><b>College :</b> <%= item.collegename %></div></td>
+           <td><div style="font-size: 13px;"><b>Skills :</b> <%= item.skills %><br><b>Other Activities :</b> <%= item.otheractivities %></div></td>
+           <td><img class="button modal-button" data-target="#modal" userid="<%=item.userid %>" username="<%=item.username%>" picture="<%=item.picture%>" src='/images/<%=item.picture %>' style="width: 70px; height: 70px; border-radius: 10px;"></td>
+           <div id="modal" class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content center" style="width: 550px; height: 475px; border-radius: 10px;">
+              <!-- Any other Bulma elements you want -->
+              <form action="/resume/pictureupdatewithmodal" method="POST" enctype="multipart/form-data">
+              <input id="userid" type="hidden" value="" name="uid">
+              <div style="padding-bottom: 13px;"><h2 id="username" style="font-weight: bold; font-size: 25px; color: darkcyan;"></h2></div>
+              <div><img id="userpic" src="" width="200"></div>
+                <div style="padding: 15px;"><b>If you want to update your picture then choose your new picture</b></div>
+                <div id="file-js-example" class="file has-name">
+                  <label class="file-label">
+                    <input class="file-input" type="file" name="newpicture" required>
+                    <span class="file-cta">
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
+                      </span>
+                      <span class="file-label">
+                        Choose a file…
+                      </span>
+                    </span>
+                    <span class="file-name">
+                      No file uploaded
+                    </span>
+                  </label>
+                </div>
+                
+                <script>
+                  const fileInput = document.querySelector('#file-js-example input[type=file]');
+                  fileInput.onchange = () => {
+                    if (fileInput.files.length > 0) {
+                      const fileName = document.querySelector('#file-js-example .file-name');
+                      fileName.textContent = fileInput.files[0].name;
+                    }
+                  }
+                </script>
+                <div style="padding: 17px;"><input type="submit" value="Update" class="btn btn-primary" style="background: darkcyan; font-size: 18px;"></div>
+              </form>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+          </div>
+           <td><a href="/resume/updatebyid?uid=<%=item.userid %>"><div style="font-size: 17px; display: flex; justify-content: center;"><i class="fas fa-edit"></i></div></a></td>
+           <td><a href="/resume/cvgenerate?uid=<%=item.userid %>"><div style="font-size: 20px; display: flex; justify-content: center;"><i class="far fa-file"></i></div></a></td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
+      </div>
+      </div>
+      <script>
+          $(".modal-button").click(function(){
+            var target = $(this).data("target");
+            var img="http://localhost:3000/images/"+$(this).attr("picture")
+            $("#userpic").attr("src",img)
+            $("#username").html($(this).attr("username"))
+            var id=$(this).attr("userid")
+            $("#userid").attr("value",id)
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+          })
+
+          $(".modal-close").click(function(){
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+          })
+      </script>
+      </body>
+</html>

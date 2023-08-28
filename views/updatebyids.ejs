@@ -1,0 +1,229 @@
+<style type="text/css">
+    .root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* flex-direction: column; */
+    }
+
+    .subdiv {
+        background-color: #ecf0f1;
+        height: auto;
+        width: 750px;
+        padding: 15px;
+        border-radius: 13px;
+        box-shadow: 5px 10px 18px #888888;
+        margin-bottom: 50px;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gap {
+        margin-top: 10px;
+    }
+
+    .btncolor {
+        background-color: darkcyan;
+        color: white;
+    }
+
+    .navbarcolor{
+        background-color: #ecf0f1;
+        background: rgba(90, 50, 0.2, 0.1)
+    }
+</style>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/javascripts/project.js"></script>
+
+<form action="/resume/updateform">
+    <nav class="navbar sticky-top navbarcolor" style="display: flex; box-shadow: 0 8px 6px -6px #999;">
+        <div class="center" style="width: 20%;"><a class="navbar-brand" href="/resume/resumemaking">
+                <img src="/images/logo.png" width="38" alt="logo">
+            </a></div>
+        <div class="center"
+            style="width: 60%; font-size: 30px; font-weight: bold; letter-spacing: 2px; color: darkcyan;">Resume Updation/Deletion
+        </div>
+        <div class="center" style="width: 20%;"><a class="navbar-brand" href="/resume/showalldatawithmodal">
+            <i class="fas fa-database"></i>
+            </a></div>
+    </nav>
+    <div class="root" style="margin-top: 45px;">
+        <input type="hidden" value="<%= result.userid %>" name="uid">
+        <div class="subdiv">
+            <div class="row gap center" style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Personal Details
+            </div>
+            <div class="row center">
+                <% var name=result.username.split(" ") %>
+                <div class="col">
+                    <% if(name.length<=2){ %>
+                    <input value="<%=name[0] %>" type="text" class="form-control" name="firstname" placeholder="Enter your first name" required pattern="[a-z A-Z]+">
+                    <% } else {
+                        var longname=name[0]+" "+name[1]
+                         %>
+                    <input value="<%= longname %>" type="text" class="form-control" name="firstname" placeholder="Enter your first name" required pattern="[a-z A-Z]+">    
+                    <%}%>
+                </div>
+                <div class="col">
+                    <% if(name.length<=2){ %>
+                    <input value="<%=name[1] %>" type="text" class="form-control" name="lastname" placeholder="Enter your last name" required pattern="[a-z A-Z]+">
+                    <% } else {%>
+                        <input value="<%=name[2] %>" type="text" class="form-control" name="lastname" placeholder="Enter your last name" required pattern="[a-z A-Z]+">
+                        <%}%>       
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <input value="<%= result.fathername %>" type="text" class="form-control" name="fathername" placeholder="Enter your father name" required pattern="[a-z A-Z]+">
+                </div>
+                <div class="col">
+                    <input value="<%= result.dateofbirth %>" type="date" class="form-control" name="dob" required>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col" style="display: flex; align-items: center; margin-left: 13%;">
+                  <%  if(result.gender=="Male"){ %>
+                    <input checked type="radio" value="Male" name="gender" required>
+                    <i class="fas fa-male" style="margin-left: 10px; margin-right: 30px; font-size: 30px; color: darkcyan;"></i>
+                    <input type="radio" value="Female" name="gender" required>
+                    <i class="fas fa-female" style="margin-left: 10px; font-size: 30px; color: deeppink;"></i>
+                    <% }else{ %>
+                    <input checked type="radio" value="Female" name="gender" required>
+                    <i class="fas fa-female" style="margin-left: 10px; font-size: 30px; color: deeppink;"></i>
+                    <input type="radio" value="Male" name="gender" required>
+                    <i class="fas fa-male" style="margin-left: 10px; margin-right: 30px; font-size: 30px; color: darkcyan;"></i>
+                    <% } %>
+                </div>
+            </div>
+            <div class="row gap center" style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Contact Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <select id="states" name="state" class="form-control">
+                        <option value='<%=result.stateid %>'><%=result.statename %></option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select id="cities" name="city" class="form-control">
+                        <option value='<%=result.cityid %>'><%=result.cityname %></option>
+                        </select>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                    <input value="<%= result.email %>" type="email" name="email" class="form-control" placeholder="E-Mail Address" required>
+                </div>
+                <div class="col">
+                    <input value="<%= result.mobilenumber %>" type="text" name="mobileno" class="form-control" placeholder="Mobile Number" required pattern="[0-9]{10}" title="Must be enter 10 digits only">
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                   <textarea class="form-control" name="useraddress" placeholder="Enter your full address" required><%= result.fulladdress %></textarea>
+                </div>
+            </div>
+            <div class="row gap center" style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Qualification Details
+            </div>
+            <div class="row" style="padding: 0px 0px 10px 10px; font-weight: 500; font-size: 15px;">
+                High School Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input value="<%= result.highschoolpercentage %>" type="text" name="highschoolpercentage" class="form-control" placeholder="Enter percentage" required>
+                </div>
+                <div class="col">
+                    <select name="highschoolboard" class="form-control" id="highschoolboards">
+                        <option value='<%=result.boardid %>'><%=result.highschoolboard %></option>
+                        </select>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                        <input value="<%= result.highschoolpassingyear %>" required type="text" name="highschoolpassingyear" class="form-control" placeholder="Enter passing year" style="width: 48%;">
+                </div>
+            </div>
+            <div class="row" style="padding: 10px; font-weight: 500; font-size: 15px;">
+                Higher secondary School Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input value="<%= result.highersecondarypercentage %>" required type="text" name="highersecondarypercentage" class="form-control" placeholder="Enter percentage">
+                </div>
+                <div class="col">
+                    <select name="highersecondaryboard" class="form-control" id="highersecondaryboards">
+                        <option value='<%=result.boardid %>'><%=result.highersecondaryboard %></option>
+                        </select>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                        <input value="<%= result.highersecondarypassingyear %>" required type="text" name="highersecondarypassingyear" class="form-control" placeholder="Enter passing year" style="width: 48%;">
+                </div>
+            </div>
+            <div class="row" style="padding: 10px; font-weight: 500; font-size: 15px;">
+                Graduation Details
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input value="<%= result.graduationpercentage %>" required type="text" name="graduationpercentage" class="form-control" placeholder="Enter percentage">
+                </div>
+                <div class="col">
+                        <input value="<%= result.graduationpassingyear %>" required type="text" name="graduationpassingyear" class="form-control" placeholder="Enter passing year">
+                </div>
+            </div>
+            <div class="row gap">
+               <div class="col">
+                <select name="university" class="form-control" id="universities">
+                    <option value='<%=result.universityid %>'><%=result.universityname %></option>
+                </select>
+               </div>
+               <div class="col">
+                <select name="college" class="form-control" id="colleges">
+                    <option value='<%=result.collegeid %>'><%=result.collegename %></option>
+                </select>
+               </div>
+            </div>
+            <div class="row gap center" style="padding-bottom: 10px; color: darkcyan; font-weight: bold; font-size: 17px;">
+                Extra Curriculam Activities
+            </div>
+            <div class="row">
+                <div class="col">
+                   <textarea class="form-control" name="skills" placeholder="Enter your skills"><%= result.skills %></textarea>
+                </div>
+            </div>
+            <div class="row gap">
+                <div class="col">
+                   <textarea class="form-control" name="otheractivities" placeholder="Enter your other activities"><%= result.otheractivities %></textarea>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 25px;">
+                <div class="col center">
+                    <input type="submit" value="Update" class="btn btncolor" name="btn" style="margin-right: 15px; border-radius: 5px;">
+                    <input type="submit" value="Delete" class="btn btncolor" name="btn" style="border-radius: 5px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</html>

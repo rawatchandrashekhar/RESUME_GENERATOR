@@ -1,0 +1,39 @@
+<style type="text/css">
+
+#rightdiv > img{
+    margin-right: 3vmax;
+    /* filter: drop-shadow(0 0 10px black); */
+}
+
+#leftdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#leftdiv > span > p{
+    margin: 0px 6vmax 0px 6vmax;
+}
+
+</style>
+<html>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <body style="background-color: white;">
+        <div style="display: flex; justify-content: center; margin: 2vmax 0 7vmax 0;">
+            <div><font style="font-size: 2vmax; font-family: 'Poppins', sans-serif; color: black;">Welcome to this </font><b style="color: #0d6efd; font-size: 4vmax;"><i><u>Resume Generator</u></i></b><font style="font-size: 2vmax; color: black;"> website</font></div>
+        </div>
+            <form action="/resume/resumemaking">
+                <div style="display: flex;">
+            <div id="leftdiv" style="width: 100%;">
+                <span style="display: flex; margin-bottom: 2vmax; font-family: 'Poppins', sans-serif; color: black;"><p><b>NOTE :-</b><br>If you generate your resume first of all click on generate resume button then add your resume data then see your data in data list then generate and download your resume.</p></span>
+            <input type="submit" value="Generate resume" class="btn btn-primary"></div>
+            <div id="rightdiv" style="width: 100%; display: flex; justify-content: flex-end;"><img src="/images/homeimage.jpg" width="600"></div>
+           </div>
+        </form>
+            </div>
+        </body>
+</html>
